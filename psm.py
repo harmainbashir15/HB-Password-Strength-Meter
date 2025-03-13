@@ -23,43 +23,45 @@ st.write(" Enter your below to check its security level. 🔍 ")
 #function to check password strength
 def check_password_strength(password):
      score = 0
+     feedback = []
      
      # Length Check
      if len(password) >= 8:
          score += 1
      else:
-         print("❌ Password should be at least 8 characters long.")
+         feedback.append("❌ Password should be at least 8 characters long.")
      
      # Upper & Lowercase Check
      if re.search(r"[A-Z]", password) and re.search(r"[a-z]", password):
          score += 1
      else:
-         print("❌ Include both uppercase and lowercase letters.")
+         feedback.append("❌ Include both uppercase and lowercase letters.")
      
      # Digit Check
      if re.search(r"\d", password):
          score += 1
      else:
-         print("❌ Add at least one number (0-9).")
+         feedback.append("❌ Add at least one number (0-9).")
      
      # Special Character Check
      if re.search(r"[!@#$%^&*]", password):
          score += 1
      else:
-         print("❌ Include at least one special character (!@#$%^&*).")
+         feedback.append("❌ Include at least one special character (!@#$%^&*).")
      
      # Strength Rating
      if score == 4:
-         print("✅ Strong Password!")
+         st.success("✅ Strong Password!")
      elif score == 3:
-         print("⚠️ Moderate Password - Consider adding more security features.")
+         st.info("⚠️ Moderate Password - Consider adding more security features.")
      else:
-         print("❌ Weak Password - Improve it using the suggestions above.")
+         st.error("❌ Weak Password - Improve it using the suggestions above.")
  #feedback
-if feedback:
+if feedback:  # Ensure feedback is not empty or None
     with st.expander("🔍 **Improve your password** "):
         for item in feedback:
             st.write(item)
+
 password = st. text_input("Enter your password:" , type = "password" , help = "Ensure your password is strong 🔐")  
 
 #button working
@@ -69,3 +71,4 @@ if st.button ("Check Strength"):
         check_password_strength(password)
     else:
         st.warning(" ⚠️ Please enter a password first!") #show warning if password empty
+
