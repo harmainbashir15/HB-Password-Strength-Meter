@@ -72,4 +72,8 @@ if st.button("Check Strength"):
                     st.write(item)
     else:
         st.warning("⚠️ Please enter a password first!")  # Show warning if password is empty
+# Footer  
+st.write("_ _ _")  
+st.write( "Your password is the key—make it strong, keep it safe! 🛡️ ")  
+st.write("**Created by Harmain Bashir**")          
 
